@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Young+Serif&display=swap&family=Great+Vibes&family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Carta de San Valentín</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #fae1dd;
+        font-family:
+          DM Serif Text,
+          sans-serif;
+        margin: 0;
+      }
+
+      .contenedor {
+        --env-side: 180px;
+        --env-top: 120px;
+        position: relative;
+      }
+
+      .superior {
+        position: absolute;
+        border-left: var(--env-side) solid transparent;
+        border-right: var(--env-side) solid transparent;
+        border-top: var(--env-top) solid #f08080;
+        border-bottom: var(--env-top) solid transparent;
+
+        transition: transform 0.75s;
+        transform-origin: top;
+      }
+
+      .mensaje {
+        position: absolute;
+        padding: 1.5rem;
+        line-height: 1.4rem;
+        box-sizing: border-box;
+        text-align: center;
+        font-family: "Brush Script MT", cursive;
+        font-size: 20px;
+        background: #eae2b7;
+        width: calc(var(--env-side) * 2);
+        height: calc(var(--env-top) * 2);
+        z-index: -1;
+        transition: transform 0.75s ease-in-out;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #f08080 transparent;
+      }
+
+      .mensaje::-webkit-scrollbar {
+        width: 5px;
+      }
+      .mensaje::-webkit-scrollbar-thumb {
+        background: #f08080;
+        border-radius: 10px;
+      }
+
+      .mensaje:before {
+        content: "";
+        border-style: dotted;
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        bottom: 45px;
+      }
+
+      .mensaje p {
+        position: relative;
+        top: 4px;
+        font-size: 1.2rem;
+        margin-top: 10px;
+      }
+
+      .carta {
+        border-left: var(--env-side) solid #f8ad9d;
+        border-right: var(--env-side) solid #f4978e;
+        border-top: var(--env-top) solid transparent;
+        border-bottom: var(--env-top) solid #f8ad9d;
+      }
+
+      .bx {
+        position: absolute;
+        color: #f6406a;
+        top: 38%;
+        right: calc(50% - 25px);
+        font-size: 50px;
+        animation: palpitar 0.6s linear infinite;
+        cursor: pointer;
+      }
+
+      h1 {
+        font-size: clamp(1.4rem, 5vw, 2rem);
+        text-align: center;
+        margin: 0.5rem 0 0;
+      }
+
+      .psorpresa {
+        margin-top: -10px;
+      }
+
+      .botones {
+        margin-top: 15px;
+        display: none;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .boton {
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #ff66b2, #ff4081);
+        background-size: 200% 200%;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .boton:hover {
+        background-position: 100% 100%;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .abrir-superior {
+        transform: rotateX(180deg);
+      }
+
+      .abrir-mensaje {
+        transform: translateY(-100%);
+        z-index: 3;
+      }
+
+      .bx-rotada {
+        color: #f6406a;
+        animation: none;
+      }
+
+      @keyframes palpitar {
+        0% {
+          transform: scale(1.07);
+        }
+        80% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.08);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .contenedor {
+          --env-side: 150px;
+          --env-top: 100px;
+        }
+
+        .mensaje:before {
+          content: "";
+          border-style: dotted;
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          right: 12px;
+          bottom: 45px;
+        }
+
+        .mensaje p {
+          position: relative;
+          top: -15px;
+          font-size: 1rem;
+        }
+
+        .bx {
+          font-size: 38px;
+          right: calc(50% - 19px);
+        }
+
+        h1 {
+          font-size: 1.55rem;
+        }
+
+        .letter-panel {
+          padding: 0.75rem;
+        }
+
+        .letter-card {
+          padding: 1.5rem 1.25rem;
+          max-height: 92vh;
+        }
+
+        .letter-card h1 {
+          font-size: 2.6rem;
+        }
+
+        .letter-card .texto-carta p {
+          font-size: 1.05rem;
+          line-height: 1.6;
+        }
+
+        .letter-card .subtitulo {
+          font-size: 1.25rem;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .contenedor {
+          --env-side: 130px;
+          --env-top: 88px;
+        }
+
+        .bx {
+          font-size: 32px;
+          right: calc(50% - 16px);
+        }
+
+        .mensaje {
+          font-size: 16px;
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 1.3rem;
+        }
+
+        .letter-card {
+          padding: 1.25rem 1rem;
+        }
+      }
+
+      /* ------- estilos del inicio: carta en pantalla completa ------- */
+      .script {
+        font-family: "Great Vibes", cursive;
+      }
+      .hand {
+        font-family: "Dancing Script", cursive;
+      }
+
+      .hearts-bg {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .float-heart {
+        position: fixed;
+        bottom: -40px;
+        animation: floatUp linear forwards;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      @keyframes floatUp {
+        to {
+          transform: translateY(-110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .letter-panel {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        z-index: 100;
+      }
+
+      .letter-panel.hidden {
+        display: none;
+      }
+
+      .panel-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(136, 19, 55, 0.5);
+        backdrop-filter: blur(5px);
+        cursor: pointer;
+      }
+
+      .letter-card {
+        position: relative;
+        max-width: 580px;
+        max-height: 88vh;
+        overflow-y: auto;
+        background: rgba(255, 255, 255, 0.97);
+        border-radius: 1.5rem;
+        border: 1px solid #fce7f3;
+        box-shadow: 0 25px 60px rgba(190, 24, 93, 0.4);
+        padding: 2rem 2.5rem;
+        text-align: center;
+        animation: letterIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        scrollbar-width: thin;
+        scrollbar-color: #fda4af transparent;
+      }
+
+      .letter-card::-webkit-scrollbar {
+        width: 6px;
+      }
+      .letter-card::-webkit-scrollbar-thumb {
+        background: #fda4af;
+        border-radius: 10px;
+      }
+
+      @keyframes letterIn {
+        from {
+          transform: translateY(60px) scale(0.85);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .panel-close {
+        position: absolute;
+        top: 14px;
+        right: 18px;
+        background: none;
+        border: none;
+        color: #fda4af;
+        font-size: 26px;
+        line-height: 1;
+        cursor: pointer;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .panel-close:hover {
+        color: #e11d48;
+        transform: rotate(90deg);
+      }
+
+      .letter-card h1 {
+        font-family: "Great Vibes", cursive;
+        font-size: 3.6rem;
+        line-height: 1;
+        color: #be123c;
+        margin: 0 0 0.25rem;
+      }
+
+      .letter-card .subtitulo {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.5rem;
+        color: #fb7185;
+        margin: 0 0 1rem;
+      }
+
+      .divider {
+        height: 1px;
+        width: 110px;
+        margin: 1.25rem auto;
+        background: linear-gradient(
+          to right,
+          transparent,
+          #fb7185,
+          transparent
+        );
+      }
+
+      .letter-card .texto-carta p {
+        text-align: left;
+        color: #881337;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.18rem;
+        line-height: 1.7;
+        text-indent: 1.5rem;
+        margin-bottom: 0.9rem;
+      }
+
+      .letter-card .firma {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.6rem;
+        color: #be123c;
+        margin: 0;
+      }
+
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.9s forwards;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .heart-beat {
+        display: inline-block;
+        animation: heartBeat 1.6s infinite;
+      }
+
+      @keyframes heartBeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.25);
+        }
+        45% {
+          transform: scale(1);
+        }
+        60% {
+          transform: scale(1.25);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>
+      <i
+        class="bx bxs-heart"
+        style="
+          position: static;
+          display: inline-block;
+          font-size: 0.85em;
+          color: #f6406a;
+          vertical-align: middle;
+          margin-right: 6px;
+          animation: none;
+        "
+      ></i>
+      Tengo algo que decirte, Mi Mar
+    </h1>
+    <p class="psorpresa">Una pequeña sorpresa para ti...</p>
+
+    <div class="contenedor" id="AbrirContenedor">
+      <div class="superior"></div>
+      <div class="mensaje">
+        Mi Mar 💘, quiero hablar con usted de algo que he venido sintiendo desde
+        hace un tiempo. No es para ponerle presión ni para que se sienta
+        incómoda, simplemente prefiero ser honesto con lo que llevo en el
+        corazón.<br /><br />
+        Con el tiempo le he tomado un cariño muy especial y me he dado cuenta de
+        que cada vez me importa más usted y la persona que es. Me gusta mucho la
+        confianza que hemos construido, hablar con usted, saber de su día y
+        compartir tantas cosas, incluso las más pequeñas.<br /><br />
+        Y pues… usted me gusta. ❤️ Ya no quiero seguir ocultando lo que siento
+        ni hacer como si fuera solamente un cariño de amigos, porque para mí se
+        ha convertido en algo más.<br /><br />
+        No espero que me responda de inmediato ni que sienta lo mismo que yo
+        siento por usted. Tampoco quiero que esto cambie o dañe lo bonito que
+        hemos construido. Solo quería ser sincero con usted y decirle lo que
+        realmente siento.<br /><br />
+        Se lo digo con mucho respeto y desde el corazón. Pase lo que pase, yo
+        voy a valorar muchísimo a la persona que es usted y todo lo bonito que
+        hemos compartido. ❤️
+        <p>— Alejandro.</p>
+      </div>
+      <div class="carta">
+        <i class="bx bxs-heart"></i>
+      </div>
+    </div>
+
+    <div class="botones">
+      <button class="boton" id="Abrir">Abrir</button>
+      <button class="boton" id="Cerrar">Cerrar</button>
+    </div>
+
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <div class="letter-panel hidden" id="letterPanel">
+      <div class="panel-backdrop" onclick="cerrarCarta()"></div>
+      <div class="letter-card">
+        <button class="panel-close" onclick="cerrarCarta()" aria-label="Cerrar">
+          ✕
+        </button>
+
+        <div class="script heart-beat" style="font-size: 3rem; color: #fb7185">
+          ♥
+        </div>
+
+        <h1>Mi Mar 💘</h1>
+        <p class="subtitulo">quiero hablarle con el corazón</p>
+
+        <div class="divider"></div>
+
+        <div class="texto-carta fade-in-up">
+          <p>
+            Mi Mar, quiero hablar con usted de algo que he venido sintiendo
+            desde hace un tiempo. No es para ponerle presión ni para que se
+            sienta incómoda, simplemente prefiero ser honesto con lo que llevo
+            en el corazón.
+          </p>
+          <p>
+            Con el tiempo le he tomado un cariño muy especial y me he dado
+            cuenta de que cada vez me importa más usted y la persona que es. Me
+            gusta mucho la confianza que hemos construido, hablar con usted,
+            saber de su día y compartir tantas cosas, incluso las más pequeñas.
+          </p>
+          <p>
+            Y pues… usted me gusta. ❤️ Ya no quiero seguir ocultando lo que
+            siento ni hacer como si fuera solamente un cariño de amigos, porque
+            para mí se ha convertido en algo más.
+          </p>
+          <p>
+            No espero que me responda de inmediato ni que sienta lo mismo que yo
+            siento por usted. Tampoco quiero que esto cambie o dañe lo bonito
+            que hemos construido. Solo quería ser sincero con usted y decirle lo
+            que realmente siento.
+          </p>
+          <p>
+            Se lo digo con mucho respeto y desde el corazón. Pase lo que pase,
+            yo voy a valorar muchísimo a la persona que es usted y todo lo
+            bonito que hemos compartido. ❤️
+          </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="firma">— Alex.</p>
+      </div>
+    </div>
+
+    <script>
+      const btnAbrir = document.querySelector("#Abrir");
+      const btnCerrar = document.querySelector("#Cerrar");
+      const corazon = document.querySelector(".bx");
+      const contenedor = document.querySelector("#AbrirContenedor");
+      const letterPanel = document.getElementById("letterPanel");
+      let abierta = false;
+
+      function abrirCarta() {
+        if (abierta) return;
+        abierta = true;
+
+        const ElementoSuperior = document.querySelector(".superior");
+        ElementoSuperior.classList.add("abrir-superior");
+
+        const h1 = document.querySelector("h1");
+        const p = document.querySelector("p");
+        h1.style.transform = "translateY(-120px)";
+        p.style.transform = "translateY(-120px)";
+        h1.style.transition = "transform 0.65s ease-in-out";
+        p.style.transition = "transform 0.65s ease-in-out";
+
+        corazon.classList.add("bx-rotada");
+
+        setTimeout(() => {
+          ElementoSuperior.style.zIndex = -1;
+          const ElementoMensaje = document.querySelector(".mensaje");
+          ElementoMensaje.classList.add("abrir-mensaje");
+        }, 700);
+
+        setTimeout(() => {
+          letterPanel.classList.remove("hidden");
+          burstHearts();
+        }, 1600);
+      }
+
+      function cerrarCarta() {
+        letterPanel.classList.add("hidden");
+
+        if (!abierta) return;
+        abierta = false;
+
+        const ElementoSuperior = document.querySelector(".superior");
+        const ElementoMensaje = document.querySelector(".mensaje");
+        ElementoMensaje.classList.remove("abrir-mensaje");
+
+        setTimeout(() => {
+          const h1 = document.querySelector("h1");
+          const p = document.querySelector("p");
+          h1.style.transform = "translateY(0px)";
+          p.style.transform = "translateY(0px)";
+
+          ElementoSuperior.style.zIndex = 0;
+          ElementoSuperior.classList.remove("abrir-superior");
+          corazon.classList.remove("bx-rotada");
+        }, 700);
+      }
+
+      // Corazones flotantes de fondo
+      function spawnFloatingHeart() {
+        const heart = document.createElement("div");
+        heart.className = "float-heart";
+        heart.textContent = Math.random() > 0.5 ? "♥" : "♡";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = 14 + Math.random() * 24 + "px";
+        heart.style.color = ["#f9a8d4", "#fda4af", "#fbcfe8", "#f9a8b5"][
+          Math.floor(Math.random() * 4)
+        ];
+        heart.style.animationDuration = 8 + Math.random() * 8 + "s";
+        document.getElementById("heartsBg").appendChild(heart);
+        setTimeout(() => heart.remove(), 20000);
+      }
+      setInterval(spawnFloatingHeart, 900);
+
+      // Explosión de corazones al abrir la carta
+      function burstHearts() {
+        for (let i = 0; i < 26; i++) {
+          const heart = document.createElement("div");
+          heart.className = "float-heart";
+          heart.textContent = Math.random() > 0.5 ? "♥" : "♡";
+          heart.style.left = 25 + Math.random() * 50 + "vw";
+          heart.style.fontSize = 16 + Math.random() * 26 + "px";
+          heart.style.color = ["#f43f5e", "#fb7185", "#fda4af", "#e11d48"][
+            Math.floor(Math.random() * 4)
+          ];
+          heart.style.animationDuration = 2.5 + Math.random() * 3 + "s";
+          document.getElementById("heartsBg").appendChild(heart);
+          setTimeout(() => heart.remove(), 6000);
+        }
+      }
+
+      btnAbrir.addEventListener("click", abrirCarta);
+      btnCerrar.addEventListener("click", cerrarCarta);
+      corazon.addEventListener("click", abrirCarta);
+      contenedor.addEventListener("click", abrirCarta);
+    </script>
+  </body>
+</html>
